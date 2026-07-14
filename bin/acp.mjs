@@ -4,7 +4,7 @@
 // a declared dependency of this package, so npx resolves it from the
 // installed package's own node_modules).
 import { spawnSync } from 'node:child_process';
-import { readFileSync } from 'node:fs';
+import { readFileSync, realpathSync } from 'node:fs';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -64,9 +64,17 @@ function main() {
   }
   const args = command === 'tone' ? buildToneSpawnArgs(PACKAGE_DIR, rest) : buildSetupSpawnArgs(PACKAGE_DIR, rest);
   const result = spawnSync('npx', args, { stdio: 'inherit' });
+  if (result.error) {
+    console.error(`failed to launch ${args[0]}: ${result.error.message}`);
+    process.exit(1);
+  }
   process.exit(result.status ?? 1);
 }
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
+// npm bin shims are symlinks — realpath both sides or the guard never fires under npx
+const invokedAs = (() => {
+  try { return realpathSync(process.argv[1] ?? ""); } catch { return process.argv[1] ?? ""; }
+})();
+if (invokedAs === fileURLToPath(import.meta.url)) {
   main();
 }
