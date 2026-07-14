@@ -27,7 +27,7 @@ jobs:
         run: |
           ! grep -riE "chadfurman|\bscout\b|change.factory|business-brainstorm|/Users/|fossa" \
             --exclude-dir=.git --exclude-dir=node_modules \
-            --exclude=LICENSE --exclude=package-lock.json . \
+            --exclude=LICENSE --exclude=package-lock.json --exclude=ci.yml . \
             | grep -vE "buildaloud/agentic-content-pipeline"
 
       - name: Setup smoke test (codex harness)
