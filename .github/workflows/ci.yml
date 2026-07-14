@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm test
+
+      - name: Leak gate (working tree)
+        run: |
+          ! grep -riE "chadfurman|\bscout\b|change.factory|business-brainstorm|/Users/|fossa" \
+            --exclude-dir=.git --exclude-dir=node_modules \
+            --exclude=LICENSE --exclude=package-lock.json . \
+            | grep -vE "buildaloud/agentic-content-pipeline"
+
+      - name: Setup smoke test (codex harness)
+        run: |
+          TMP=$(mktemp -d)
+          cd "$TMP" && git init -q
+          node "$GITHUB_WORKSPACE/bin/acp.mjs" setup --yes --harness codex
+          test -f content-pipeline.config.json
+          test -d .claude/skills/content-pipeline
+          test -d .claude/skills/human-tone
+          ls .codex/agents/*.toml | head -1
