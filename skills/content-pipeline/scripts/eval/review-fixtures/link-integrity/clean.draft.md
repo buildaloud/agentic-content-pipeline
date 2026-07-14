@@ -1,0 +1,5 @@
+## Try it yourself
+
+If you want the same read-only ticket board, grab
+[issue-tracker-cli](https://github.com/example-org/issue-tracker-cli) and point it at any
+repo with markdown tickets. It's a five-minute install.

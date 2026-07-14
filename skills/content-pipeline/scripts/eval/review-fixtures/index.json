@@ -1,0 +1,160 @@
+{
+  "description": "Diffable behavior anchors for the document-review-fanout gate-disposition reviewers. Each fixture pairs a 'trip' case (should produce a gate finding) with a 'clean' case (should not). See README.md for how to run a reviewer against one.",
+  "designDoc": "references/review-fanout-design.md (relative to the content-pipeline skill base)",
+  "fixtures": [
+    {
+      "id": "flatness-golden",
+      "reviewer": "flatness-reviewer",
+      "axis": "sentence-grain empties",
+      "mode": "draft",
+      "gate": true,
+      "isGolden": true,
+      "trip": {
+        "file": "flatness/golden-trip.draft.md",
+        "expected": "flatness/golden-trip.expected.md"
+      },
+      "clean": {
+        "file": "flatness/clean.draft.md",
+        "expected": "flatness/clean.expected.md"
+      },
+      "notes": "The golden case named in the design doc's Testing section and in flatness-reviewer.md's own 'Golden case' section: 'Punctuation is decoration. An empty sentence is the actual problem.' must trip on the back half only."
+    },
+    {
+      "id": "formulaic",
+      "reviewer": "formulaic-reviewer",
+      "axis": "AI structural crutches",
+      "mode": "draft",
+      "gate": true,
+      "isGolden": false,
+      "trip": {
+        "file": "formulaic/trip.draft.md",
+        "expected": "formulaic/trip.expected.md"
+      },
+      "clean": {
+        "file": "formulaic/clean.draft.md",
+        "expected": "formulaic/clean.expected.md"
+      },
+      "notes": "Stacks a negative-parallelism 'X, not Y' construction and a rule-of-three tricolon in one beat. Also confirmed to fire tone-grader.ts's negParallelHits + tricolonHits regexes (see trip.expected.md for the exact hit strings and a re-verify script)."
+    },
+    {
+      "id": "voice",
+      "reviewer": "voice-reviewer",
+      "axis": "voice fidelity + human texture",
+      "mode": "draft",
+      "gate": true,
+      "isGolden": false,
+      "trip": {
+        "file": "voice/trip.draft.md",
+        "expected": "voice/trip.expected.md"
+      },
+      "clean": {
+        "file": "voice/clean.draft.md",
+        "expected": "voice/clean.expected.md"
+      },
+      "notes": "Trip fails all three required checks at once: no burstiness (uniform sentence length), no concrete specifics, no held opinion (agentless passive, view-from-nowhere). Clean is the target voice: bursty, specific ($30/month, the CDN, the rate-limit store), a stated opinion."
+    },
+    {
+      "id": "banned-phrase",
+      "reviewer": "deterministic tone gate (tone-grader.ts scoreText, BANNED list)",
+      "axis": "permabanned AI-tic phrases",
+      "mode": "draft",
+      "gate": true,
+      "isGolden": false,
+      "deterministic": true,
+      "trip": {
+        "file": "banned-phrase/trip.draft.md",
+        "expected": "banned-phrase/trip.expected.md"
+      },
+      "clean": {
+        "file": "banned-phrase/clean.draft.md",
+        "expected": "banned-phrase/clean.expected.md"
+      },
+      "notes": "Proves the deterministic tone gate (not an LLM reviewer) fires on a literal BANNED-list hit ('that's the whole point') and forces aiScore to 100 regardless of everything else in the text. Verified mechanically by running scoreText() directly — see trip.expected.md for the exact command. Gotcha: keep the banned phrase on one line in the fixture source; a hard line-wrap between words breaks the plain-string match silently."
+    },
+    {
+      "id": "outline-structure",
+      "reviewer": "outline-structure-reviewer",
+      "axis": "whole-outline shape",
+      "mode": "outline",
+      "gate": true,
+      "isGolden": false,
+      "trip": {
+        "file": "outline-structure/trip.outline.md",
+        "expected": "outline-structure/trip.expected.md"
+      },
+      "clean": {
+        "file": "outline-structure/clean.outline.md",
+        "expected": "outline-structure/clean.expected.md"
+      },
+      "notes": "Trip: declares postFormula 'war-story' but is actually a rigid hook + 3-proof-beat + tidy-bow-payoff template with no false-lead/reveal/fix, vacuous meta, and an empty intendedBeat. Clean: a genuine war-story shape (real incident from this repo's history) matching the formula's beats one-to-one. Both fixtures validated as parseable YAML."
+    },
+    {
+      "id": "link-integrity",
+      "reviewer": "link-integrity-reviewer",
+      "axis": "link resolves + points at the right place",
+      "mode": "draft",
+      "gate": true,
+      "isGolden": false,
+      "trip": {
+        "file": "link-integrity/trip.draft.md",
+        "expected": "link-integrity/trip.expected.md"
+      },
+      "clean": {
+        "file": "link-integrity/clean.draft.md",
+        "expected": "link-integrity/clean.expected.md"
+      },
+      "notes": "Trip: issue-tracker-cli linked to marketplace.example.com — a resolving link but the wrong target, and the exact 'known error' documented in docs/content-pipeline/link-map.md's drift patterns. Clean: same link text pointed at the canonical GitHub repo."
+    },
+    {
+      "id": "linkedin",
+      "reviewer": "linkedin-reviewer",
+      "axis": "medium-fit for LinkedIn",
+      "mode": "draft",
+      "gate": true,
+      "isGolden": false,
+      "trip": {
+        "file": "linkedin/trip.draft.md",
+        "expected": "linkedin/trip.expected.md"
+      },
+      "clean": {
+        "file": "linkedin/clean.draft.md",
+        "expected": "linkedin/clean.expected.md"
+      },
+      "notes": "Trip: hook's full payoff doesn't land until character 345 (past the ~200-210 char above-the-fold cutoff), a literal ## markdown header, and a reflexive 'Thoughts?' closer; also carries two body links (elevation-only, not a gate — proves the reviewer correctly demotes link count instead of gating on it). Clean: same story, hook lands complete by character 113, plain text, no links, a real closing question."
+    },
+    {
+      "id": "email",
+      "reviewer": "email-reviewer",
+      "axis": "medium-fit for email",
+      "mode": "draft",
+      "gate": true,
+      "isGolden": false,
+      "trip": {
+        "file": "email/trip.draft.md",
+        "expected": "email/trip.expected.md"
+      },
+      "clean": {
+        "file": "email/clean.draft.md",
+        "expected": "email/clean.expected.md"
+      },
+      "notes": "Trip: 70-char clickbait subject (50-char cap) plus three competing CTAs (read, reply, sign up) in one body. Clean: 42-char concrete subject, one CTA. Both fixtures isolate subject+CTA defects — preheader and body length stay within cap in both so unrelated findings don't leak in."
+    },
+    {
+      "id": "bluesky",
+      "reviewer": "bluesky-reviewer",
+      "axis": "medium-fit for Bluesky",
+      "mode": "draft",
+      "gate": true,
+      "isGolden": false,
+      "trip": {
+        "file": "bluesky/trip.draft.md",
+        "expected": "bluesky/trip.expected.md"
+      },
+      "clean": {
+        "file": "bluesky/clean.draft.md",
+        "expected": "bluesky/clean.expected.md"
+      },
+      "notes": "Trip: a 2-segment thread (postFormula: thread) whose hook segment is 356 characters (300-char hard limit), uses **bold** markdown, and opens with the exact thread-emoji '1/7 — a must-read thread on...' engagement-bait framing named in the reviewer's spec. Clean: a genuine 3-segment thread (167/122/90 chars), plain text, hook stands alone with no framing."
+    }
+  ]
+}

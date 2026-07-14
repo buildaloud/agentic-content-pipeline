@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "note": "Staging tally for the automated generation-side learner. Owned by the content-learner agent — it runs after each post's review loops, abstracts that post's round-1 confirmed gate edits into content-agnostic patterns, and tallies them across posts. A pattern promotes into drafter-pitfalls.md only at promoteThreshold distinct posts. Health metrics (rounds/tone per post) live here too — they are a signal, never the optimization target. Both pattern and metric entries carry a 'medium' field ('blog' | 'linkedin' | 'email' | 'bluesky') naming which rendition the finding came from, since a fix that applies to a blog post's structure may not apply to a linkedin or bluesky rendition of the same content unit.",
+  "promoteThreshold": 3,
+  "patterns": [],
+  "metrics": []
+}

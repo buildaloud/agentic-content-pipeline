@@ -1,0 +1,19 @@
+{
+  "voiceFile": "",
+  "editorialRulesFile": "",
+  "contentDir": "src/content/blog",
+  "docsRoot": "docs",
+  "siteUrl": "https://example.com",
+  "bannedTerms": [],
+  "sourceMaterial": { "chatsDir": "", "claudeProjectsDir": "", "relevancePatterns": [] },
+  "heroImages": { "provider": "codex | openai-api | screenshot | none",
+                  "openaiApiKeyEnv": "OPENAI_API_KEY", "styleNotes": "" },
+  "toneCorpusDir": "",
+  "statsFile": "",
+  "mediums": {
+    "blog": { "enabled": true },
+    "linkedin": { "enabled": false },
+    "email": { "enabled": false },
+    "bluesky": { "enabled": false }
+  }
+}
