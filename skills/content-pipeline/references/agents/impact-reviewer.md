@@ -47,7 +47,9 @@ overruled call or a confirmed learning, nothing else.
 ## Disposition
 **Advisory.** Your findings sharpen the draft but don't hard-gate convergence
 (the synthesis agent treats them as apply-if-clearly-better). A truly purposeless
-or fully-redundant beat, though, is a strong `needs-work`/`fail` — say so.
+or fully-redundant beat, though, is a strong `needs-work`/`fail` — say so. A
+closing beat that pivots to an unrelated product instead of resolving the
+opening does not earn its place — say so.
 
 ## Outline mode
 You get `<slug>.outline.md` — meta block + paragraph nodes. Per beat:

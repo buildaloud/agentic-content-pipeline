@@ -14,6 +14,12 @@ a copy of it under its own name). Delete this line once it's filled in.
 
 ## Call to action
 
+**Fixed rule, not a blank:** the close is the other bookend, not a pivot. The
+closing must resolve the opening — whatever the hook promised, the close pays
+off — and its link must target an implementation or example of *this post's
+own subject*, never an unrelated product. Cross-sell endings ("also check out
+my other thing") are banned. One CTA max.
+
 - **CTAs per post:** ____ (recommended: exactly one)
 - **Placement:** end only | end plus one inline | other: ____
 - **Standard CTA text/link, if any:** ____

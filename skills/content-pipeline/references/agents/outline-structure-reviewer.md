@@ -109,6 +109,15 @@ whole-document property.
   proof beats), a tidy-bow closing beat that resolves a tension the post never
   built, a `from-X-to-Y` breadth beat that names nothing. These are the human-tone
   tells expressed as structure. Flag and de-templatize.
+- **Bookend check (closing resolves opening).** The closing must resolve the
+  opening — whatever the hook promised, the close pays off; the final beat's
+  `intendedBeat` should read as the other bookend, not a pivot to something
+  else. Its link(s) must target an implementation or example of *this
+  article's own subject* — never an unrelated product. A closing beat whose
+  link is a generic cross-sell (e.g. "check out our other product" bolted onto
+  a post that isn't about that product) is a **gate finding**: give an
+  apply-ready fix — retarget the link to the article's own subject/repo/live
+  example, or cut the beat.
 
 ## How to ground a finding (quote-and-fix, not vibes)
 

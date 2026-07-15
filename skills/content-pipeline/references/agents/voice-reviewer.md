@@ -30,6 +30,14 @@ Three things must be present, and you check each by quoting:
   don't care about the dashboard"). Hedge theater ("it's worth noting", "arguably",
   "one could argue") and the view-from-nowhere summary are the failure.
 
+**Register calibration:** the target register is "someone competent explaining
+their work plainly, with occasional dry humor. Not a keynote. Not a trailer.
+Not a founder pitch." (`references/drafter-pitfalls.md`, relative to the
+content-pipeline skill base — the performative-register entry). Confidence
+reads as calm, not punchy — a line that would sound natural said to a
+colleague at a desk passes; a line that needs a movie-trailer voice to land
+does not.
+
 ## Disposition: GATE (hard)
 
 Your `gateFindings` block the fixpoint loop. Report them so the synthesis agent

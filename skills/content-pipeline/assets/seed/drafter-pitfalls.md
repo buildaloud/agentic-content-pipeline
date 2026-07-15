@@ -60,6 +60,39 @@ same spans — don't seed them in the first place.)
 No closing beat that resolves to reassurance / "the future looks bright" / a moral
 wrap. End on the sharpest concrete point, or stop when the argument's done.
 
+## 7. The performative register
+A real rewrite-queue draft read "too many quips, too much sales speak, trying
+too hard, sounds like a bad actor, a bad movie dialogue." The tells:
+- **Dramatic-sequencing inversions as hooks** — "X happens before Y" shapes:
+  "Twelve stages run before one of these posts ships", "By the time an agent
+  writes its first sentence, a dozen reviewers have already…". ONE of these per
+  post at most, and only when the sequencing IS the point. Never as a reflex
+  opener.
+- **Punch-fragment overdose** — "Not even for me." "Go look." "One lane."
+  "Wrong lever." A fragment lands because it's rare. More than 2-3 per post
+  reads like an action-movie trailer. Prefer complete, calm sentences.
+- **Sales speak** — turbocharge, supercharge, game-changing, unlock, "the whole
+  thesis", "that's the bet", pitch-deck cadence. State what the thing does.
+- **Playing a character instead of talking** — if a line would sound natural
+  delivered to a colleague at a desk, keep it. If it needs a movie-trailer
+  voice, cut it. Confidence reads as calm, not as punchy.
+The register to aim for: someone competent explaining their work plainly, with
+occasional dry humor. Not a keynote. Not a trailer. Not a founder pitch.
+Deterministic enforcement: the human-tone skill's `scripts/eval/tone-grader.ts`
+(installed alongside this skill) scores dramaticInversions (first free, +6 each,
+cap 18), punchFragments (first TEN free — burstiness is legitimate voice — then
++1, cap 6), and salesSpeak (+5 each, cap 15). Calibrated so no clean post or
+corpus sample newly fails.
+
+## 8. The sales-pivot ending
+The closing must resolve the opening — whatever the hook promised, the close
+pays off — and its link must point at an implementation or example of *this
+article's own subject*, never an unrelated product. "Also check out my other
+product/thing" is a sales pivot, not a payoff: it reads like ad copy instead
+of helping the reader. Ban it. One CTA max, and it serves the reader's next
+step on THIS topic (go see the live thing, clone the repo, run the command) —
+not a cross-sell.
+
 ## Auto-derived pitfalls
 Appended by the content-learner agent once a pattern recurs on ≥3 distinct
 posts AND across 2+ mediums (or the pattern is a `blog` pattern — blog is the

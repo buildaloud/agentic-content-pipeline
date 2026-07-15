@@ -44,7 +44,7 @@ Read the voice file (`config.voiceFile`) and the editorial rules file (`config.e
 | `hook` | 1–2 sentences | The configured voice: direct, honest, specific. No hype, no hedging. Write this first. |
 | `outline` | string[]; 4–8 items | Section beats in order. Each beat is a short phrase, not a sentence. |
 | `internalLinks` | string[]; ≥ 2 items | Pick from the editorial rules file's link map. Only include links that are genuinely on-topic for the post. |
-| `cta` | string | One call to action, end of post. Match the post type to the editorial rules file's CTA table. Sound like the configured persona, not a template. |
+| `cta` | string | One call to action, end of post. `cta` = the reader's next step on THIS topic (see the live thing, clone the repo, run the command) — never a cross-sell to an unrelated product. The close must resolve the opening: it's the other bookend, not a pivot. Match the post type to the editorial rules file's CTA table. Sound like the configured persona, not a template. |
 | `socialBlurb` | ≤ 280 chars | Hook first. One sentence of context. Post URL placeholder at the end. No hashtags. |
 | `imageConcept` | string | Describe the hero image per the editorial rules file's image guidance: brand palette (e.g. two hex codes), a scene-appropriate variation on the persona, composition rule. Extend the base generation prompt from that file. |
 
