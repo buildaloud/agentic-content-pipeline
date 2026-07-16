@@ -1,6 +1,6 @@
 ---
 name: content-pipeline
-description: Orchestrate an agentic content pipeline across mediums (blog, linkedin, email, bluesky — see config.mediums): source scan → topic gate → SEO research → brief → per-medium outline + outline review loop → draft + draft review loop (single-axis reviewer army, deterministic tone gate) → hero image → summary → assemble → commit; requires the companion human-tone skill from the same package.
+description: Orchestrate an agentic content pipeline across mediums (blog, linkedin, email, bluesky — see config.mediums): source scan → topic gate → SEO research → brief → per-medium outline + outline review loop → draft + assertion audit (web-checked facts before style) + draft review loop (single-axis reviewer army, deterministic tone gate) → hero image → summary + meta-audit → assemble → commit; requires the companion human-tone skill from the same package.
 ---
 
 # Content Pipeline Skill (Orchestrator)
@@ -221,6 +221,33 @@ Dispatch `drafter` with `model: "sonnet"` and: the perspective call from Step 2 
 
 ---
 
+### 5.5 Assertion Audit — extract → check → fix (cap 2), BEFORE any review
+
+Facts get fixed before style gets polished: this loop runs on the fresh draft
+(plus the title), before the Step 6 review army spends rounds on prose that
+might be false.
+
+1. Dispatch `assertion-extractor` (Sonnet) with the title + draft. It returns
+   every checkable assertion: named entities WITH their implied
+   real/invented/anonymized stance, numbers, attributions, internal-project
+   claims, link targets, and 3-5 composite reader-takeaways. Disclaimers and
+   footnotes are assertions too.
+2. Dispatch `assertion-checker` (Sonnet, web-enabled) with the extractor's
+   list + the draft. Every named entity — especially ones claimed to be
+   invented or anonymized — gets a public-web existence check; attributions
+   get fetched; internal claims get grepped against the facts ledger. It
+   returns TRUE/FALSE/MISLEADING/UNVERIFIED verdicts and an apply-ready edit
+   per FALSE/MISLEADING finding.
+3. The single editor applies the edits mechanically. If any FALSE finding
+   fired, run one more extract→check round (cap 2 total). A flagged TITLE is
+   surfaced to the human, never auto-edited.
+
+Provenance: a published post used "grill-me" — a real, viral skill by Matt
+Pocock — as an "invented" example and attributed audit findings to the name.
+The review army passed it; only a web existence check catches that class.
+
+---
+
 ### 6. Draft Review Loop — fan-out → synthesize → edit → re-review (◆)
 
 One fixpoint loop over the drafted post, at draft grain, graded against the outline's per-beat guidance — same shape as Step 4.6's outline loop, one grain deeper. Design: `references/review-fanout-design.md`. **Runs once per enabled medium**, on that medium's own draft; the list below is the blog roster — for a non-blog medium, swap `seo-reviewer` for that medium's own reviewer per the Roster deltas table in Mediums above, every other reviewer unchanged. The tone gate below runs for every medium, on that medium's own draft text.
@@ -269,6 +296,8 @@ Any path: author alt text, and carry both the image path and alt text to Assembl
 ### 9. Structured Summary (optional, if your content schema has one)
 
 If the consumer's content schema defines a structured summary field, dispatch a Sonnet agent with the final draft and that schema definition; it returns the summary in that shape. No em-dashes, no rule-of-three — run it past the human-tone rules. Goes straight into the post's frontmatter at Assemble.
+
+**Meta-audit — the summary/description/title get the assertion audit too.** Assembly artifacts are authored after the review loops, so without this they'd ship unreviewed (that is exactly how a bad title framing survived once). Run one `assertion-extractor` → `assertion-checker` pass scoped to the title + description + summary (body as context only — its claims were already checked at Step 5.5); apply metadata fixes; surface any title flag to the human.
 
 **Rolling digest (optional).** If the consumer's project maintains a rolling digest of recent posts (a JSON file appended to at publish time, or similar), append a fresh entry summarizing posts in whatever trailing window that file already uses — a fresh synthesis of that window, not a concatenation of past entries. Most consumers won't have this; skip if you don't recognize the pattern.
 

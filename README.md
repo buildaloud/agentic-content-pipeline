@@ -3,11 +3,14 @@
 An agentic content pipeline: one topic in, up to four medium renditions out —
 blog post, LinkedIn post, email, Bluesky thread. A 12-stage orchestration
 runs two review loops — 12 reviewers grading the outline, 15 grading the
-draft, roster swapped per medium, drawn from a 26-agent roster — that fan
-out, synthesize, and edit findings into apply-ready fixes; a deterministic
-AI-tell tone gate (`aiScore < 15` on a 0-100 scale, plus a hard permaban
-phrase list); and a generation-side learner, per medium, that feeds
-confirmed fixes back into future drafts. Ships as two companion skills —
+draft, roster swapped per medium, drawn from a 28-agent roster — that fan
+out, synthesize, and edit findings into apply-ready fixes; an assertion
+audit (extract every checkable claim, web-check named entities and
+attributions) that runs before the review loops and again on the assembled
+metadata; a deterministic AI-tell tone gate (`aiScore < 15` on a 0-100
+scale, plus a hard permaban phrase list); and a generation-side learner,
+per medium, that feeds confirmed fixes back into future drafts. Ships as
+two companion skills —
 `content-pipeline` (the orchestrator) and `human-tone` (the tone gate) —
 neither runs without the other.
 
