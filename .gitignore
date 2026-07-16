@@ -7,3 +7,4 @@ dist/
 .claude/
 docs/
 content-pipeline.config.json
+content-pipeline/
