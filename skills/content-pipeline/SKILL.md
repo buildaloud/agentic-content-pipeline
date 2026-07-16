@@ -1,6 +1,6 @@
 ---
 name: content-pipeline
-description: Orchestrate an agentic content pipeline across mediums (blog, linkedin, email, bluesky — see config.mediums): source scan → topic gate → SEO research → brief → per-medium outline + outline review loop → draft + assertion audit (web-checked facts before style) + draft review loop (single-axis reviewer army, deterministic tone gate) → hero image → summary + meta-audit → assemble → commit; requires the companion human-tone skill from the same package.
+description: Orchestrate an agentic content pipeline across mediums (blog, linkedin, email, bluesky — see config.mediums): source scan → topic gate → SEO research → brief → per-medium outline + outline review loop → complete-document draft (frontmatter prose + body, one artifact) + assertion audit (web-checked facts before style) + draft review loop (single-axis reviewer army, deterministic tone gate) → hero image → assemble (identity merge only) → commit; requires the companion human-tone skill from the same package.
 ---
 
 # Content Pipeline Skill (Orchestrator)
@@ -188,7 +188,7 @@ outline, everything else in this step is identical.
 
 Dispatch a Sonnet agent (ad hoc — no dedicated agent file, same pattern as Step 9) with: the full Brief from Step 4, `references/post-formulas.md` + `references/paragraph-formulas.md` (expand the Brief's `postFormula` beats into full paragraph nodes), `<config.voiceFile>` (if set) for voice register, and `<config.docsRoot>/content-pipeline/drafter-pitfalls.md` (pre-empt the review army's recurring flags in the plan — especially no negative parallelism in `point`/`ourTake`/`gateGuidance`, which the drafter renders verbatim; the `flare` line is the one exemption). This dispatch reads `.claude/agent-memory/outline-builder/MEMORY.md` FIRST, if it has content, and appends one dated line only for a durable recurring lesson before returning (see Step 0's memory-seeding note — this is a dispatch-level ledger, not a `references/agents/` file).
 
-It writes `<slug>.outline.md` — a YAML meta block (`point`, `hook`, `emotionalCore`, `flare`, `targetAudience`, `targetKeyword`, `searchIntent`, `postFormula`) plus an ordered `paragraphs[]` list, one node per beat, each carrying `order`, `topic`, `goal`, `paragraphFormula`, `audienceNote`, `intendedBeat`, `ourTake`, `facts`, `sources`, `keyword`, `links`, `gateGuidance`, `rendersAsProse`. Validate against `OutlineSchema` (`scripts/lib/outline-schema.ts`) before proceeding — a schema failure routes back to this step, not forward. This outline becomes both the drafter's input (Step 5) and the rubric every reviewer grades against.
+It writes `<slug>.outline.md` — a YAML meta block (`point`, `hook`, `emotionalCore`, `flare`, `targetAudience`, `targetKeyword`, `searchIntent`, `postFormula`) plus an ordered `paragraphs[]` list, one node per beat, each carrying `order`, `topic`, `goal`, `paragraphFormula`, `audienceNote`, `intendedBeat`, `ourTake`, `facts`, `sources`, `keyword`, `links`, `gateGuidance`, `rendersAsProse`. Validate against `OutlineSchema` (`scripts/lib/outline-schema.ts`) before proceeding — a schema failure routes back to this step, not forward. The outline also carries a `publishArtifacts` block (the schema is loose): the draft `description`, the structured `summary` plan, and a `footnotePlan` naming what any closing attribution/disclaimer will claim — these are publish artifacts, planned here and reviewed at every later stage. This outline becomes both the drafter's input (Step 5) and the rubric every reviewer grades against.
 
 ---
 
@@ -218,6 +218,8 @@ Dispatch `drafter` with `model: "sonnet"` and: the perspective call from Step 2 
 **Voice > SEO.** Never flatten the voice for a keyword. Voice is the product; SEO is a constraint.
 
 **Content structure:** hook/intro → substance → what's next → a bulleted Sources footer.
+
+**The drafter writes the COMPLETE publish document, not just a body.** The draft file opens with a frontmatter block carrying exactly the reader-facing prose fields — `title` (proposed here for organic posts; pinned/verbatim for rewrites), `description` (≤155 chars, keyword-bearing), and the structured `summary` if the consumer's schema has one — followed by the body and any closing attribution/disclaimer line (which states only true, sourced claims). Identity fields (slug/pubDate/author/tags/keywords/heroImage) are merged mechanically at Assemble, never authored here. Rationale: anything a reader sees must go through the SAME review loops as the body — a separately-authored description or summary ships unreviewed, which is how a false title framing once survived to publish.
 
 ---
 
@@ -250,7 +252,7 @@ The review army passed it; only a web existence check catches that class.
 
 ### 6. Draft Review Loop — fan-out → synthesize → edit → re-review (◆)
 
-One fixpoint loop over the drafted post, at draft grain, graded against the outline's per-beat guidance — same shape as Step 4.6's outline loop, one grain deeper. Design: `references/review-fanout-design.md`. **Runs once per enabled medium**, on that medium's own draft; the list below is the blog roster — for a non-blog medium, swap `seo-reviewer` for that medium's own reviewer per the Roster deltas table in Mediums above, every other reviewer unchanged. The tone gate below runs for every medium, on that medium's own draft text.
+One fixpoint loop over the COMPLETE drafted document — frontmatter prose (title/description/summary) and body alike; a tricolon in a summary bullet or a false claim in the description gates the same as in the body — at draft grain, graded against the outline's per-beat guidance — same shape as Step 4.6's outline loop, one grain deeper. Design: `references/review-fanout-design.md`. **Runs once per enabled medium**, on that medium's own draft; the list below is the blog roster — for a non-blog medium, swap `seo-reviewer` for that medium's own reviewer per the Roster deltas table in Mediums above, every other reviewer unchanged. The tone gate below runs for every medium, on that medium's own draft text.
 
 **Deterministic tone gate — mechanical, feeds synthesis directly, no LLM discretion.** Run before the first round and again after every edit pass, on the single current draft (never the whole corpus):
 1. Call `scoreText` (`../human-tone/scripts/eval/tone-grader.ts`) on this draft's body. If `banned > 0` OR `aiScore >= 15`, that's a mandatory critical gate finding — inject it directly into synthesis's gate set (see Synthesize below). This is a hard code check: a hit here gates regardless of what any reviewer concludes about the same prose.
@@ -295,9 +297,7 @@ Any path: author alt text, and carry both the image path and alt text to Assembl
 
 ### 9. Structured Summary (optional, if your content schema has one)
 
-If the consumer's content schema defines a structured summary field, dispatch a Sonnet agent with the final draft and that schema definition; it returns the summary in that shape. No em-dashes, no rule-of-three — run it past the human-tone rules. Goes straight into the post's frontmatter at Assemble.
-
-**Meta-audit — the summary/description/title get the assertion audit too.** Assembly artifacts are authored after the review loops, so without this they'd ship unreviewed (that is exactly how a bad title framing survived once). Run one `assertion-extractor` → `assertion-checker` pass scoped to the title + description + summary (body as context only — its claims were already checked at Step 5.5); apply metadata fixes; surface any title flag to the human.
+The structured summary is authored IN the draft's frontmatter at Step 5 and reviewed by the full Step 5.5 + Step 6 loops with everything else — do not author it here. This step only verifies it still matches the consumer's schema after the loops (shape drift → one mechanical fix, not a rewrite).
 
 **Rolling digest (optional).** If the consumer's project maintains a rolling digest of recent posts (a JSON file appended to at publish time, or similar), append a fresh entry summarizing posts in whatever trailing window that file already uses — a fresh synthesis of that window, not a concatenation of past entries. Most consumers won't have this; skip if you don't recognize the pattern.
 
