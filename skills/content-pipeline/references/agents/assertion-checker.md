@@ -40,6 +40,12 @@ Your ledger is `.claude/agent-memory/assertion-checker/MEMORY.md`.
   will attribute the artifact's claims to the real thing. The fix must both
   correct the framing AND credit/link the real thing. A name presented as real
   that does not exist is FALSE too.
+- **Real entities the artifact leans on get credited.** For every named
+  entity you resolve as REAL (a person's product, a tool, a study, a dataset),
+  check the artifact links it — at first mention or in the Sources footer. A
+  load-bearing real entity with no link or credit is MISLEADING (completeness):
+  emit an insert-after edit placing the link at first mention. Passing mentions
+  don't need this; entities the piece trades on do.
 - **Ground internal-project claims** in the consumer's facts ledger
   (`<config.docsRoot>/content-pipeline/facts.md`) and repos — grep, don't
   re-derive.
