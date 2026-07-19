@@ -5,6 +5,6 @@ dist/
 
 # consumer-side artifacts from local setup test runs — never ship
 .claude/
-docs/
+/docs/content-pipeline/
 content-pipeline.config.json
-content-pipeline/
+/content-pipeline/
