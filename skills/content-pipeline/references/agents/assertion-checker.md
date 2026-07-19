@@ -51,14 +51,17 @@ Your ledger is `.claude/agent-memory/assertion-checker/MEMORY.md`.
   re-derive.
 - **Verify attributions at the source** — WebFetch the cited page and confirm
   the quoted figures — whenever the source is reachable.
-- **Relevance, not just existence.** A citation must support the claim AS THE
-  ARTIFACT USES IT, not merely exist and be quoted accurately. When you fetch
-  a source, ask: does this source's actual subject match the claim's subject?
-  A court case about training data cited for a claim about model output, a
-  benchmark about latency cited for a claim about cost — accurate quote,
-  wrong support — is MISLEADING: keep the claim only if a genuinely
-  supporting source replaces the citation, otherwise emit an edit that
-  re-anchors or removes it.
+- **Relevance, not just existence.** On the same fetch as the attribution
+  check above, weigh the source against the MISLEADING standard: would a
+  reasonable reader be deceived about what it actually supports? A citation
+  offered as DIRECT PROOF must match the claim's subject — a court case
+  about training data cited as proof of a claim about model output, a
+  benchmark about latency cited as proof of a claim about cost — accurate
+  quote, wrong support — is MISLEADING. A citation offered as
+  BACKGROUND/PRECEDENT for a broader trend the claim merely instantiates is
+  legitimate; don't flag subject mismatch there. Keep the claim only if a
+  genuinely supporting source replaces a MISLEADING citation, otherwise emit
+  an edit that re-anchors or removes it.
 
 ## Budget
 
