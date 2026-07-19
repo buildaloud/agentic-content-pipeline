@@ -51,6 +51,14 @@ Your ledger is `.claude/agent-memory/assertion-checker/MEMORY.md`.
   re-derive.
 - **Verify attributions at the source** — WebFetch the cited page and confirm
   the quoted figures — whenever the source is reachable.
+- **Relevance, not just existence.** A citation must support the claim AS THE
+  ARTIFACT USES IT, not merely exist and be quoted accurately. When you fetch
+  a source, ask: does this source's actual subject match the claim's subject?
+  A court case about training data cited for a claim about model output, a
+  benchmark about latency cited for a claim about cost — accurate quote,
+  wrong support — is MISLEADING: keep the claim only if a genuinely
+  supporting source replaces the citation, otherwise emit an edit that
+  re-anchors or removes it.
 
 ## Budget
 
