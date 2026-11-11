@@ -72,7 +72,7 @@ function scoreHumanCorpus(corpusDir: string): { humanScores: number[]; humanAgg:
   for (const line of lines) {
     const t = line.trim();
     if (t.length < 25) continue;
-    const m = scoreText(t);
+    const m = scoreText(t, { mode: 'human' });
     humanScores.push(m.aiScore);
     for (const k of Object.keys(humanAgg)) humanAgg[k].push((m as any)[k]);
   }
@@ -138,7 +138,7 @@ async function main() {
   const drafts: { slug: string; m: ToneMetrics; judge: JudgeOutcome }[] = [];
   for (const f of draftFiles) {
     const body = stripFrontmatter(readFileSync(join(CONTENT_DIR, f), 'utf8'));
-    const m = scoreText(body);
+    const m = scoreText(body, { mode: 'human' });
     const judge = await runJudgePass(body, { key: geminiKey });
     drafts.push({ slug: f.replace(/\.md$/, ''), m, judge });
   }
