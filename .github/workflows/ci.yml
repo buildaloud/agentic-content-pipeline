@@ -37,5 +37,6 @@ jobs:
           node "$GITHUB_WORKSPACE/bin/acp.mjs" setup --yes --harness codex
           test -f content-pipeline.config.json
           test -d .claude/skills/content-pipeline
-          test -d .claude/skills/human-tone
+          test -d .claude/skills/plain-words
+          test ! -d .claude/skills/human-tone
           ls .codex/agents/*.toml | head -1

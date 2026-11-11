@@ -25,19 +25,21 @@ export function buildSetupSpawnArgs(packageDir, rest) {
 }
 
 export function buildToneSpawnArgs(packageDir, rest) {
-  return ['tsx', path.join(packageDir, 'skills/human-tone/scripts/eval/score-file.ts'), ...rest];
+  const modeArgs = rest[0] === '--mode' ? [] : ['--mode', 'human'];
+  return ['tsx', path.join(packageDir, 'skills/plain-words/scripts/eval/score-file.ts'), ...modeArgs, ...rest];
 }
 
 function printHelp() {
   console.log(`Usage: agentic-content-pipeline <command> [args]
 
 Commands:
-  setup [flags]      Install the content-pipeline + human-tone skills into
+  setup [flags]      Install the content-pipeline + plain-words skills into
                       this repo, register agents, seed config/ledgers.
                       (default command — also runs if you pass no
                       subcommand, or only flags)
-  tone <file>         Score one file's aiScore/banned tells against the
-                      ship gate (aiScore < 15, banned === 0).
+  tone <file>         Score one file's aiScore/banned tells in human mode,
+                      the draft ship gate (aiScore < 15, banned === 0).
+                      Use 'tone --mode plain <file>' to score docs.
 
 Flags:
   --help, -h          Show this message.
