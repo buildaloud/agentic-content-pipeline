@@ -109,7 +109,7 @@ export function capForCrutches(r: JudgeResult): JudgeResult {
 if (process.argv[1]?.endsWith('judge.ts')) {
   const file = process.argv[2];
   if (!file) {
-    console.error('usage: npx tsx skills/human-tone/scripts/eval/judge.ts <post.md>');
+    console.error('usage: npx tsx skills/plain-words/scripts/eval/judge.ts <post.md>');
     process.exit(1);
   }
   const key = process.env.GEMINI_API_KEY;
