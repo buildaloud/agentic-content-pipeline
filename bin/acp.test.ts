@@ -2,7 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { spawnSync } from 'node:child_process';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { parseCommand, buildSetupSpawnArgs, buildToneSpawnArgs } from './acp.mjs';
+import { existsSync } from 'node:fs';
+import { PACKAGE_DIR, parseCommand, buildSetupSpawnArgs, buildToneSpawnArgs } from './acp.mjs';
 
 const BIN_PATH = path.join(path.dirname(fileURLToPath(import.meta.url)), 'acp.mjs');
 
@@ -41,9 +42,18 @@ describe('buildSetupSpawnArgs', () => {
 });
 
 describe('buildToneSpawnArgs', () => {
-  it('points tsx at the packaged score-file.ts and passes the target file through', () => {
+  it('points tsx at the packaged score-file.ts in human mode and passes the target file through', () => {
     const args = buildToneSpawnArgs('/pkg', ['draft.md']);
-    expect(args).toEqual(['tsx', '/pkg/skills/human-tone/scripts/eval/score-file.ts', 'draft.md']);
+    expect(args).toEqual(['tsx', '/pkg/skills/plain-words/scripts/eval/score-file.ts', '--mode', 'human', 'draft.md']);
+  });
+
+  it('passes an explicit --mode through unchanged', () => {
+    const args = buildToneSpawnArgs('/pkg', ['--mode', 'plain', 'x.md']);
+    expect(args).toEqual(['tsx', '/pkg/skills/plain-words/scripts/eval/score-file.ts', '--mode', 'plain', 'x.md']);
+  });
+
+  it('builds a target file that exists in the package', () => {
+    expect(existsSync(buildToneSpawnArgs(PACKAGE_DIR, ['x.md'])[1])).toBe(true);
   });
 });
 
