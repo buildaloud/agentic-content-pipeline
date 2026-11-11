@@ -43,10 +43,10 @@ overruled call or a confirmed learning, nothing else.
 - `references/review-fanout-design.md` (relative to the content-pipeline skill
   base) — the fan-out architecture, the outline schema, and where you sit in
   the draft loop.
-- The human-tone skill's `SKILL.md` (installed alongside this skill) — the
+- The plain-words skill's `SKILL.md` (human mode) (installed alongside this skill) — the
   texture bar. **Burstiness** is your north star: jam a 3-word fragment
-  against a 30-word run; vary hard. The human owner's real writing swings
-  4→60 words in one line.
+  against a 20- to 25-word run; vary hard, but never past 25 words, which the
+  human-mode tone gate charges for.
 - `references/paragraph-formulas.md` (relative to the content-pipeline skill
   base) — short paragraphs, one job each. A paragraph doing two jobs should
   split; that's a shape finding.

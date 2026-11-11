@@ -78,11 +78,12 @@ too hard, sounds like a bad actor, a bad movie dialogue." The tells:
   voice, cut it. Confidence reads as calm, not as punchy.
 The register to aim for: someone competent explaining their work plainly, with
 occasional dry humor. Not a keynote. Not a trailer. Not a founder pitch.
-Deterministic enforcement: the human-tone skill's `scripts/eval/tone-grader.ts`
-(installed alongside this skill) scores dramaticInversions (first free, +6 each,
+Deterministic enforcement: the plain-words skill's `scripts/eval/tone-grader.ts`
+(installed alongside this skill) scores drafts in human mode: dramaticInversions (first free, +6 each,
 cap 18), punchFragments (first TEN free — burstiness is legitimate voice — then
-+1, cap 6), and salesSpeak (+5 each, cap 15). Calibrated so no clean post or
-corpus sample newly fails.
++1, cap 6), salesSpeak (+5 each, cap 15), and every sentence over 25 words
+(+2 each, cap 10). Human mode also scores plain mode's reading tells, so a
+post that passed under the old weights can fail now.
 
 ## 8. The sales-pivot ending
 The closing must resolve the opening — whatever the hook promised, the close

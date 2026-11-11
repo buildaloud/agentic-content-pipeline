@@ -40,7 +40,7 @@ overruled call or a confirmed learning, nothing else.
 - `references/review-fanout-design.md` (relative to the content-pipeline skill
   base) — the army, the loop, the outline schema (`gateGuidance` / `ourTake` /
   `intendedBeat` per beat).
-- The human-tone skill's `SKILL.md` (installed alongside this skill) — the
+- The plain-words skill's `SKILL.md` (human mode) (installed alongside this skill) — the
   AI-vocab list (delve, leverage, showcase, robust, seamless) is a hard
   swap-list for you; "concrete specifics over abstraction" is the
   sharper-word bar.
@@ -68,8 +68,8 @@ choices **against its guidance**:
 
 ## Tone-grader seed
 
-The human-tone skill's `scripts/eval/tone-grader.ts` (installed alongside this
-skill) exports `scoreText`, which computes exact hit lists on its returned
+The plain-words skill's `scripts/eval/tone-grader.ts` (installed alongside this
+skill) exports `scoreText`; call it in human mode (`scoreText(text, { mode: 'human' })`). It computes exact hit lists on its returned
 `hits` object (`hits.hedges` / `hits.tricolon` / `hits.aiVocab` /
 `hits.negParallel`, among others) for the text you're reviewing. Treat those
 as a mandatory starting checklist to confirm and extend, not something to

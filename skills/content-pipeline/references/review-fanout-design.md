@@ -16,7 +16,7 @@ rubric the draft is graded against.
 
 ## Why now
 
-- The tool built to catch flat/empty prose (`skills/human-tone/scripts/eval/judge.ts`)
+- The tool built to catch flat/empty prose (`skills/plain-words/scripts/eval/judge.ts`)
   exists but is **not wired into the gate** — `run.ts` only calls the regex
   `scoreText`. Empty formulaic sentences pass today.
 - The current reviewers are generalists (`content-reviewer` does voice+SEO+marketing
@@ -204,7 +204,7 @@ orchestrating agent dispatches the fan-out in practical batches via the Agent
 tool. What IS mechanically enforced:
 - **Convergence + disposition** — `scripts/lib/review-disposition.ts`'s
   `classifyDisposition` and `isConverged`, not prose judgment.
-- **The tone gate** — `tone-grader.ts`'s `scoreText` (`banned` / `aiScore`), a
+- **The tone gate** — `tone-grader.ts`'s `scoreText` in human mode (`banned` / `aiScore`), a
   hard code check with zero LLM discretion.
 - **The round cap (5)** — enforced by the loop's own round counting.
 

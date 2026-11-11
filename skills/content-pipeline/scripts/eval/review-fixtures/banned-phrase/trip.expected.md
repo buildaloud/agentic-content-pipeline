@@ -1,7 +1,7 @@
 # Expected: deterministic tone gate (`tone-grader.ts` BANNED list) — trip
 
 **Reviewer:** deterministic — `scoreText()` in
-`skills/human-tone/scripts/eval/tone-grader.ts` (the signal `formulaic-reviewer`
+`skills/plain-words/scripts/eval/tone-grader.ts` (the signal `formulaic-reviewer`
 and `voice-reviewer` are instructed to treat as a mandatory starting checklist,
 per their "Tone-grader seed" sections)
 **Mode:** draft
@@ -15,7 +15,7 @@ The fixture contains, verbatim, one of the three permabanned phrases in
 
 > ...behind the AI's back — that's the whole point.
 
-`scoreText()` special-cases this: `score += bannedHits.length * 100;` — any
+`scoreText()` special-cases this: the `banned` weight is 100 per hit with no cap — any
 hit forces `aiScore` to the 0-100 cap regardless of everything else in the
 text. This is verified mechanically, not just asserted: running `scoreText()`
 against this file returns `banned: 1`, `hits.banned: ["that's the whole
@@ -32,10 +32,11 @@ removed). Don't re-wrap this file without re-running the check below.
 
 ```bash
 cat > /tmp/check_banned.ts <<'EOF'
-import { scoreText } from '<repo-root>/skills/human-tone/scripts/eval/tone-grader';
+import { scoreText } from '<repo-root>/skills/plain-words/scripts/eval/tone-grader';
 import { readFileSync } from 'node:fs';
 const text = readFileSync(process.argv[2], 'utf-8');
-console.log(scoreText(text).banned, scoreText(text).hits.banned, scoreText(text).aiScore);
+const m = scoreText(text, { mode: 'human' });
+console.log(m.banned, m.hits.banned, m.aiScore);
 EOF
 npx tsx /tmp/check_banned.ts skills/content-pipeline/scripts/eval/review-fixtures/banned-phrase/trip.draft.md
 # expect: 1 [ "that's the whole point" ] 100

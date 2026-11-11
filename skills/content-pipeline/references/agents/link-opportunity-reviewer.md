@@ -46,7 +46,7 @@ overruled call or a confirmed learning, nothing else.
 - `references/review-fanout-design.md` (relative to the content-pipeline skill
   base) — the outline schema (`facts`, `sources`, `links`, `gateGuidance`) and
   the loop mechanics.
-- The human-tone skill's `SKILL.md` (installed alongside this skill) — so a
+- The plain-words skill's `SKILL.md` (human mode) (installed alongside this skill) — so a
   citation fix doesn't add AI-vocab or a hedge; keep placements in the
   configured voice.
 - The voice file (`config.voiceFile`) — the configured voice; link anchors

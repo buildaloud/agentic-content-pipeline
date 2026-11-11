@@ -1,7 +1,7 @@
 # Expected: deterministic tone gate (`tone-grader.ts` BANNED list) — clean
 
 **Reviewer:** deterministic — `scoreText()` in
-`skills/human-tone/scripts/eval/tone-grader.ts`
+`skills/plain-words/scripts/eval/tone-grader.ts`
 **Mode:** draft
 **Disposition:** CLEAN (no banned-phrase hit expected)
 

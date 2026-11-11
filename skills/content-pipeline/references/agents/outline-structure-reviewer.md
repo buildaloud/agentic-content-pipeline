@@ -57,7 +57,7 @@ overruled call or a confirmed learning, nothing else.
   *goals* forms a real arc.
 - The voice file (`config.voiceFile`) — the configured voice + who this post's
   audience is (shape has to serve them).
-- The human-tone skill's `SKILL.md` (installed alongside this skill) — the
+- The plain-words skill's `SKILL.md` (human mode) (installed alongside this skill) — the
   over-templated tells (rule-of-three, tidy-bow endings) show up at the
   STRUCTURE level too, not just the sentence.
 
@@ -107,7 +107,7 @@ whole-document property.
   beat is missing, the shape is hollow for that type — flag it.
 - **Structural AI tells.** Rule-of-three at the outline level (always exactly three
   proof beats), a tidy-bow closing beat that resolves a tension the post never
-  built, a `from-X-to-Y` breadth beat that names nothing. These are the human-tone
+  built, a `from-X-to-Y` breadth beat that names nothing. These are the plain-words
   tells expressed as structure. Flag and de-templatize.
 - **Bookend check (closing resolves opening).** The closing must resolve the
   opening — whatever the hook promised, the close pays off; the final beat's

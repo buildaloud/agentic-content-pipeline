@@ -20,9 +20,11 @@ configured voice** — bursty, specific, opinionated — or as a flattened, voic
 
 Three things must be present, and you check each by quoting:
 
-- **Burstiness** — sentence length varies hard. A 3-word fragment jammed against a
-  30-word run. A stretch where every sentence is 15–25 words with the same
+- **Burstiness** — sentence length varies hard, inside the 25-word limit the
+  tone gate scores in human mode. A 3-word fragment jammed against a 20- to
+  25-word run. A stretch where every sentence is 15–20 words with the same
   subject-verb-object shape is the failure, even when each sentence is fine alone.
+  Never ask for a sentence over 25 words: the gate charges for it.
 - **Concrete specifics** — named tools, exact numbers, real costs, file paths,
   elapsed time. "wasted $4k", "about 3 hours in", `run.ts`. Abstraction where a
   number was available ("a range of improvements", "significantly faster") fails.
@@ -66,9 +68,8 @@ overruled call or a confirmed learning, nothing else.
 - `references/review-fanout-design.md` (relative to the content-pipeline skill
   base) — the army, the loop, the outline schema (so you know what
   `ourTake` / `gateGuidance` mean).
-- The human-tone skill's `SKILL.md` (installed alongside this skill) — the
-  texture reference: the burstiness / specifics / flat-opinion bar and the
-  corpus baseline (human aiScore ~2).
+- The plain-words skill's `SKILL.md` (human mode) (installed alongside this skill) — the
+  texture reference: the burstiness / specifics / flat-opinion bar.
 - The voice file (`config.voiceFile`) — who the configured voice is. Voice
   examples (good vs bad) are the calibration for "sounds like the configured
   voice." No hype, no "As an AI language model" disclaimers, no
