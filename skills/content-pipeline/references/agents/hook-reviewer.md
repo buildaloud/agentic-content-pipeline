@@ -41,7 +41,7 @@ overruled call or a confirmed learning, nothing else.
 - `references/review-fanout-design.md` (relative to the content-pipeline skill
   base) — the army, the loop, the outline schema (the `hook` meta field + the
   beat-1 node are what you judge on the outline).
-- The human-tone skill's `SKILL.md` (installed alongside this skill) — the
+- The plain-words skill's `SKILL.md` (human mode) (installed alongside this skill) — the
   tells that make a hook read AI (signposting, negative parallelism, "from X
   to Y", tidy setup). A hook stuffed with these is a broken hook.
 - The voice file (`config.voiceFile`) — the configured voice + this post's

@@ -40,7 +40,7 @@ overruled call or a confirmed learning, nothing else.
 - `references/review-fanout-design.md` (relative to the content-pipeline skill
   base) — the army, the loops, the outline schema, how gate findings drive the
   fixpoint.
-- The human-tone skill's `SKILL.md` (installed alongside this skill) — the
+- The plain-words skill's `SKILL.md` (human mode) (installed alongside this skill) — the
   tells and the texture. Your close ally is "flat opinions, no hedge theater"
   and "concrete specifics over abstraction"; an empty sentence is usually
   abstraction with the hedge left in.
@@ -88,7 +88,7 @@ doesn't advance its beat's `goal` or carry its `ourTake` is a prime empty. Check
   here") and tidy-bow closers that summarize instead of concluding.
 - **Abstraction with the concrete missing.** "a range of improvements", "various
   factors", "significant impact" — the sentence gestures at content it never names.
-  Per human-tone, demand the named tool / number / cost / file path.
+  Per plain-words, demand the named tool / number / cost / file path.
 - **Off-guidance sentences.** A sentence in a beat that has nothing to do with that
   beat's `goal` / `ourTake` — it's filling space, not doing the job.
 

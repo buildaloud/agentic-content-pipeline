@@ -11,8 +11,8 @@ metadata; a deterministic AI-tell tone gate (`aiScore < 15` on a 0-100
 scale, plus a hard permaban phrase list); and a generation-side learner,
 per medium, that feeds confirmed fixes back into future drafts. Ships as
 two companion skills —
-`content-pipeline` (the orchestrator) and `human-tone` (the tone gate) —
-neither runs without the other.
+`content-pipeline` (the orchestrator) and `plain-words` (the tone gate; its
+human mode scores the drafts) — neither runs without the other.
 
 ## Quick start
 
@@ -23,7 +23,7 @@ npx agentic-content-pipeline setup --harness claude   # or --harness codex
 ```
 
 This:
-- installs `content-pipeline` + `human-tone` into `.claude/skills/`
+- installs `content-pipeline` + `plain-words` into `.claude/skills/`
 - registers the agents natively for your harness (skip `--harness` and they
   still dispatch from reference files, fully functional)
 - interviews you into `content-pipeline.config.json`, validating your
@@ -98,8 +98,8 @@ pass is never the one thing left unmeasured.
 ## `tone` subcommand
 
 `npx agentic-content-pipeline tone <file>` scores one file's
-`aiScore`/permaban-phrase hits against the ship gate, outside the full
-pipeline.
+`aiScore`/permaban-phrase hits in human mode, the draft ship gate, outside
+the full pipeline. Use `tone --mode plain <file>` to score docs.
 
 ## Cost
 

@@ -48,7 +48,7 @@ overruled call or a confirmed learning, nothing else.
   finding schema.
 - The voice file (`config.voiceFile`) — the configured voice; a LinkedIn fix
   should never flatten it into generic LinkedIn-guru voice.
-- `human-tone` SKILL.md — so a medium-fit fix never reintroduces an AI tell.
+- `plain-words` SKILL.md (human mode) — so a medium-fit fix never reintroduces an AI tell.
 
 ## Inputs
 - The artifact file path (LinkedIn outline node or drafted `linkedin.md`).

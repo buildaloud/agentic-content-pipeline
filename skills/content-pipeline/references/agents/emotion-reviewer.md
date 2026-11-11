@@ -52,7 +52,7 @@ overruled call or a confirmed learning, nothing else.
 - `references/review-fanout-design.md` (relative to the content-pipeline skill
   base) — the architecture, the outline schema, and how your findings feed the
   fixpoint loop.
-- The human-tone skill's `SKILL.md` (installed alongside this skill) — the
+- The plain-words skill's `SKILL.md` (human mode) (installed alongside this skill) — the
   texture that reads as felt: stakes, real numbers, self-correction in the
   open, flat opinions, understatement. Its `emotion_impact` note is your
   rubric.
@@ -105,7 +105,7 @@ provided. For each beat, hold the paragraph to its own `goal`, `ourTake`,
   No I, no cost, no specific. Fix: reintroduce a person, a number, a real moment.
 - **Motivational-poster ending.** "The future looks bright." "The possibilities
   are endless." Fix: end on the concrete thing that's true right now, or end
-  abruptly when the point's made (per human-tone's tidy-bow rule).
+  abruptly when the point's made (per plain-words' tidy-bow rule).
 - **Competent but dead.** Every sentence is correct; nothing is felt. Fix: find
   the one beat where something was actually at risk and let it breathe — cost,
   doubt, the thing that almost didn't work.

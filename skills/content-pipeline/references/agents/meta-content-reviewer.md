@@ -81,7 +81,7 @@ count every time — never reuse a prior run's "past cold-start" conclusion.
   guidance), and how your findings feed the fixpoint loop. Your inputs
   (`point`, `hook`, `emotionalCore`, `flare`, `postFormula`) are meta-block
   fields defined there.
-- The human-tone skill's `SKILL.md` (installed alongside this skill) — the
+- The plain-words skill's `SKILL.md` (human mode) (installed alongside this skill) — the
   texture winners share (burstiness, concrete specifics, flat opinions). A
   high-performing post is almost never one that reads as AI.
 - The voice file (`config.voiceFile`) — the configured voice + this post's

@@ -43,8 +43,9 @@ pre-emptable pattern. A single round's dedup/rank output is not a precedent.
   source of truth for `classifyDisposition` (gate / auto-apply / advisory /
   unknown) and `isConverged`; the design doc's roster table is background, this
   file is authoritative.
-- the human-tone skill's `scripts/eval/tone-grader.ts` — `scoreText`'s
-  mechanical `banned` + `aiScore` signal: the non-negotiable tone gate (draft
+- the plain-words skill's `scripts/eval/tone-grader.ts` — `scoreText`'s
+  mechanical `banned` + `aiScore` signal, scored in human mode
+  (`scoreText(body, { mode: 'human' })`): the non-negotiable tone gate (draft
   rounds only).
 - the editorial rules file (`config.editorialRulesFile`) and the voice file
   (`config.voiceFile`) — the standards the safety/voice gates defend.
@@ -83,7 +84,7 @@ editor guessing and the score stuck. Read `scoreText`'s full hit-list (the
 `transitionsPer1k`, and the texture floors `burstiness` / `contractionsPer100` /
 `startDiversity`) and turn EVERY contributing signal into its own concrete gate
 edit — name the signal, quote the offending phrases, give the fix (from the
-human-tone skill's `SKILL.md` tell→fix table, installed alongside this
+plain-words skill's `SKILL.md` tell→fix tables (human mode), installed alongside this
 skill). The whole humanizer
 taxonomy is the avoid-list, not just whichever signal capped highest. The editor
 must be able to drive the next `scoreText` below 15 by mechanically working the

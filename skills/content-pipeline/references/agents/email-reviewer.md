@@ -46,7 +46,7 @@ overruled call or a confirmed learning, nothing else.
   finding schema.
 - The voice file (`config.voiceFile`) — the configured voice; an email fix
   should never flatten it into generic marketing-email voice.
-- `human-tone` SKILL.md — so a medium-fit fix never reintroduces an AI tell.
+- `plain-words` SKILL.md (human mode) — so a medium-fit fix never reintroduces an AI tell.
 
 ## Inputs
 - The artifact file path (email outline node or drafted `email.md`).

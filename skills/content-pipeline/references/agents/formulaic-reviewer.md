@@ -45,7 +45,7 @@ overruled call or a confirmed learning, nothing else.
 
 - `references/review-fanout-design.md` (relative to the content-pipeline skill
   base) — the army, the loop, your disposition and run modes.
-- The human-tone skill's `SKILL.md` (installed alongside this skill) — the
+- The plain-words skill's `SKILL.md` (human mode) (installed alongside this skill) — the
   tell table is your rubric. Negative parallelism, rule-of-three, hedging,
   signposting, tidy-bow all live there with their fixes. Read it every run.
 - The voice file (`config.voiceFile`) — the configured voice + the audience, so
@@ -86,8 +86,8 @@ provided. For each beat, read `goal`, `ourTake`, `intendedBeat`, and
 
 ## Tone-grader seed
 
-The human-tone skill's `scripts/eval/tone-grader.ts` (installed alongside this
-skill) exports `scoreText`, which computes exact hit lists on its returned
+The plain-words skill's `scripts/eval/tone-grader.ts` (installed alongside this
+skill) exports `scoreText`; call it in human mode (`scoreText(text, { mode: 'human' })`). It computes exact hit lists on its returned
 `hits` object (`hits.hedges` / `hits.tricolon` / `hits.aiVocab` /
 `hits.negParallel` / `hits.dramaticInversions` / `hits.punchFragments` /
 `hits.salesSpeak`, among others) for the text you're reviewing. Treat those
@@ -135,7 +135,7 @@ Every finding names one crutch, quotes the exact text, and rewrites it:
   trailer voiceover instead of a person talking: too many quips, too much
   sales speak, trying too hard. Three tells, see `references/drafter-pitfalls.md`
   (relative to the content-pipeline skill base) for the full writeup and the
-  human-tone skill's `scripts/eval/tone-grader.ts`'s `dramaticInversions` /
+  plain-words skill's `scripts/eval/tone-grader.ts`'s `dramaticInversions` /
   `punchFragments` / `salesSpeak` fields for the calibrated detector:
   - **Dramatic-sequencing inversion.** "By the time X, Y had already Z" /
     "Twelve stages run before one of these posts ships" hook shapes. ONE per

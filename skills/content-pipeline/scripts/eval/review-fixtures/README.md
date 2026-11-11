@@ -79,7 +79,7 @@ by hand:
    catch — re-run this pair after any edit to the reviewer's `.md` file.
 
 The `banned-phrase` fixture is the one exception: it targets a **deterministic**
-signal (`scoreText()` in the human-tone skill's `scripts/eval/tone-grader.ts`,
+signal (`scoreText()` in the plain-words skill's `scripts/eval/tone-grader.ts`,
 installed alongside this skill), not an LLM agent. Its `.expected.md` has a
 copy-pasteable `npx tsx` snippet instead of an agent-dispatch step — run that
 directly.

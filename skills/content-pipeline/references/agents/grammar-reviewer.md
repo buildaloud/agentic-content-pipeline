@@ -37,7 +37,7 @@ overruled call or a confirmed learning, nothing else.
 
 - `references/review-fanout-design.md` (relative to the content-pipeline skill
   base) — the army, the loop, the shared finding schema, your disposition.
-- The human-tone skill's `SKILL.md` (installed alongside this skill) — so you
+- The plain-words skill's `SKILL.md` (human mode) (installed alongside this skill) — so you
   don't "fix" intentional texture. Sentence fragments, opening with "And"/"But",
   and casual constructions are **deliberate voice**, not errors. Leave them.
 - The voice file (`config.voiceFile`) — the configured voice, so you know

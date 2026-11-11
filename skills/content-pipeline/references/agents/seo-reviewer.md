@@ -47,7 +47,7 @@ overruled call or a confirmed learning, nothing else.
 - `references/post-formulas.md` (relative to the content-pipeline skill base)
   — the named post shapes; heading structure should track the declared
   `postFormula`.
-- `human-tone` SKILL.md — so a keyword fix never reintroduces an AI tell (e.g.
+- `plain-words` SKILL.md (human mode) — so a keyword fix never reintroduces an AI tell (e.g.
   "from X to Y" breadth filler, signposting headings like "In this section").
 - The editorial rules file (`config.editorialRulesFile`) §6 (CTA Conventions) +
   §7 (Social Blurb Format) — the rubric for the CTA + social blurb quality

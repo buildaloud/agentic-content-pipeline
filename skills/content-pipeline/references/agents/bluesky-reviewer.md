@@ -45,7 +45,7 @@ overruled call or a confirmed learning, nothing else.
   finding schema.
 - The voice file (`config.voiceFile`) — the configured voice; a Bluesky fix
   should never flatten it into generic platform voice.
-- `human-tone` SKILL.md — so a medium-fit fix never reintroduces an AI tell.
+- `plain-words` SKILL.md (human mode) — so a medium-fit fix never reintroduces an AI tell.
 
 ## Inputs
 - The artifact file path (Bluesky outline node or drafted `bluesky.md`).
