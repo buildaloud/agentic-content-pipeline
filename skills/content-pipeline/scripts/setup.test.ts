@@ -394,10 +394,10 @@ describe('copyDirNoClobber', () => {
 });
 
 describe('installSkillsIntoConsumer', () => {
-  it('copies content-pipeline and human-tone skill directories into <consumer>/.claude/skills/', () => {
+  it('copies content-pipeline and plain-words skill directories into <consumer>/.claude/skills/', () => {
     const packageDir = makeTmpDir();
     const consumerRoot = makeTmpDir();
-    for (const skill of ['content-pipeline', 'human-tone']) {
+    for (const skill of ['content-pipeline', 'plain-words']) {
       const skillDir = path.join(packageDir, 'skills', skill);
       fs.mkdirSync(path.join(skillDir, 'scripts'), { recursive: true });
       fs.writeFileSync(path.join(skillDir, 'SKILL.md'), `# ${skill}`);
@@ -410,9 +410,10 @@ describe('installSkillsIntoConsumer', () => {
 
     expect(result.installed).toBe(true);
     const destContentPipeline = path.join(consumerRoot, '.claude', 'skills', 'content-pipeline');
-    const destHumanTone = path.join(consumerRoot, '.claude', 'skills', 'human-tone');
+    const destPlainWords = path.join(consumerRoot, '.claude', 'skills', 'plain-words');
     expect(fs.readFileSync(path.join(destContentPipeline, 'SKILL.md'), 'utf-8')).toBe('# content-pipeline');
-    expect(fs.readFileSync(path.join(destHumanTone, 'SKILL.md'), 'utf-8')).toBe('# human-tone');
+    expect(fs.readFileSync(path.join(destPlainWords, 'SKILL.md'), 'utf-8')).toBe('# plain-words');
+    expect(fs.existsSync(path.join(consumerRoot, '.claude', 'skills', 'human-tone'))).toBe(false);
     expect(fs.existsSync(path.join(destContentPipeline, 'scripts', 'node_modules'))).toBe(false);
   });
 
@@ -422,7 +423,7 @@ describe('installSkillsIntoConsumer', () => {
     const skillDir = path.join(packageDir, 'skills', 'content-pipeline');
     fs.mkdirSync(skillDir, { recursive: true });
     fs.writeFileSync(path.join(skillDir, 'SKILL.md'), 'new content');
-    fs.mkdirSync(path.join(packageDir, 'skills', 'human-tone'), { recursive: true });
+    fs.mkdirSync(path.join(packageDir, 'skills', 'plain-words'), { recursive: true });
 
     const destDir = path.join(consumerRoot, '.claude', 'skills', 'content-pipeline');
     fs.mkdirSync(destDir, { recursive: true });
