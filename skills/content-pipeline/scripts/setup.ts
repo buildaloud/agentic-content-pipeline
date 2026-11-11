@@ -123,9 +123,9 @@ export interface InstallSkillsResult {
   results?: Record<string, CopyResult>;
 }
 
-const PACKAGED_SKILLS = ['content-pipeline', 'human-tone'];
+const PACKAGED_SKILLS = ['content-pipeline', 'plain-words'];
 
-/** Copies this package's skills/content-pipeline + skills/human-tone into <consumerRepoRoot>/.claude/skills/, per-file no-clobber, skipping scripts/node_modules. */
+/** Copies this package's skills/content-pipeline + skills/plain-words into <consumerRepoRoot>/.claude/skills/, per-file no-clobber, skipping scripts/node_modules. */
 export function installSkillsIntoConsumer(packageDir: string, consumerRepoRoot: string): InstallSkillsResult {
   const destRoot = path.join(consumerRepoRoot, '.claude', 'skills');
   const results: Record<string, CopyResult> = {};
@@ -595,7 +595,7 @@ async function main(): Promise<void> {
 
   // Install-skills step runs FIRST: if we're not already an installed skill
   // (the npx-skills-add layout, or a prior run of this installer), this is
-  // the npx front door — copy skills/content-pipeline + skills/human-tone
+  // the npx front door — copy skills/content-pipeline + skills/plain-words
   // from the package into <repoRoot>/.claude/skills/, then operate on that
   // installed copy for every step below.
   const alreadyInstalled = isInstalledUnderClaudeSkills(SCRIPT_DIR);
